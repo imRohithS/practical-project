@@ -1,0 +1,8 @@
+{"results":[{"columns":[{"name":"CUST_INTRL_ID","type":"VARCHAR2"},{"name":"ACCT_INTRL_ID","type":"VARCHAR2"},{"name":"CUST_ACCT_ROLE_CD","type":"VARCHAR2"},{"name":"PRCSNG_BATCH_NM","type":"VARCHAR2"},{"name":"DATA_DUMP_DT","type":"DATE"},{"name":"CUST_ACCT_SEQ_ID","type":"NUMBER"},{"name":"SRC_SYS_CD","type":"VARCHAR2"}],"items":
+[
+{"cust_intrl_id":"CUINPINFODAC-04","acct_intrl_id":"ACINPINFODAC-04","cust_acct_role_cd":"OWNER","prcsng_batch_nm":"DLY","data_dump_dt":"10-12-15","cust_acct_seq_id":300086,"src_sys_cd":"MAN"}
+,{"cust_intrl_id":"CUINPINFODAC-04","acct_intrl_id":"XXXACCPORTPUMP-016","cust_acct_role_cd":"GRDN","prcsng_batch_nm":"DLY","data_dump_dt":"10-12-15","cust_acct_seq_id":300087,"src_sys_cd":"MAN"}
+,{"cust_intrl_id":"CUSTOMERTEST0000001","acct_intrl_id":"ACCOUNTTESTMRUTYUNJAYAMISHRA0000000000000000000082","cust_acct_role_cd":"TRDNG","prcsng_batch_nm":"DLY","data_dump_dt":"10-12-15","cust_acct_seq_id":300088,"src_sys_cd":"MAN"}
+,{"cust_intrl_id":"TJCSHTRNCTREN01CUST","acct_intrl_id":"TJCSHTRNCTREN01","cust_acct_role_cd":"GRDN","prcsng_batch_nm":"DLY","data_dump_dt":"10-12-15","cust_acct_seq_id":300089,"src_sys_cd":"MTS"}
+,{"cust_intrl_id":"CUINPINFODAC-04","acct_intrl_id":"ACINPINFODAC-06","cust_acct_role_cd":"TRDNG","prcsng_batch_nm":"DLY","data_dump_dt":"10-12-15","cust_acct_seq_id":300090,"src_sys_cd":"MAN"}
+]}]}

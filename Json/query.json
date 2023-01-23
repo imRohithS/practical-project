@@ -1,0 +1,122 @@
+{
+	"calc":{
+	"name": "HR",
+	"stream_id":"stream1",
+	"proc_seq_num":1,
+    "when": [
+        {
+            "must": [ 
+                {
+                    "exp": {
+						"CUST_EFCTV_RISK_NB >=@Effctv_Risk_Cutoff_Lvl"
+                    },
+					"exp": {
+						"ACTVTY_RISK_LVL >=@Actvty_Risk_Cutoff_Lvl"
+                    }
+                }
+            ]
+        }
+    ],
+    "then": [
+        {
+            "assign": {
+                "field": "cust_efctv_risk_nb",
+                "exp": {
+                    "min": [
+                        {
+                            "max": [
+                                "cust_bus_risk_nb",
+                                "cust_geo_risk_nb"
+                            ]
+                        },
+                        "cust_kyc_risk_nb"
+                    ]
+                }
+            }
+        }
+    ],
+	"else":[
+	{
+	"assign":{
+	"field" : "cust_efctv_risk_nb",
+	"exp":{
+		"equal":"cust_kyc_risk_nb"
+	}
+	}
+	}
+	]
+	}
+}
+
+{
+	"calc":{
+	"name": "derive cust_efctv_risk_nb",
+	"stream_id":"stream1",
+	"proc_seq_num":2,
+	"assign": {
+                "field": "cust_efctv_risk_nb",
+                "exp": {
+                   
+                            "max": [
+                                "cust_bus_risk_nb",
+                                "cust_geo_risk_nb"
+                            ]
+                }
+            }
+			}
+}
+
+
+{
+"calc":{
+"name": "derive cust_efctv_risk_factr_tx",
+	"stream_id":"stream1",
+	"proc_seq_num":1,
+	"when":[
+		{ "should":[
+			{
+                    "exp": {
+                        "term": "cust.cust_bus_risk_nb",
+                        "lt": 0
+                    }
+                },
+			{
+                    "exp": {
+                        "term": "cust.cust_geo_risk_nb",
+                        "lt": 0
+                    }
+                },
+			{
+                    "exp": {
+                        "coalesce": ["cust_supplemental_attr.cust_kyc_risk_nb",0],
+                        "lt": 0
+                    }
+                }
+		]
+		}
+	],
+	"then":[
+		{
+		"assign":{
+				"field":"cust_efctv_risk_factr_tx",
+				"exp":{
+					"min":["cust.cust_bus_risk_nb","c.cust_geo_risk_nb",{"coalesce":["cust_supplemental_attr.cust_kyc_risk_nb",0]}]
+				}
+		}
+		}
+			
+	],
+	"else":[
+		{
+			"assign":{
+				"field":"cust_efctv_risk_factr_tx",
+				"exp":{
+					"max":["cust.cust_bus_risk_nb",",c.cust_geo_risk_nb",{"coalesce":["cust_supplemental_attr.cust_kyc_risk_nb",0]}]
+				}
+			}
+		}
+	]
+}
+}
+
+
